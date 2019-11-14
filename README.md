@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/utensils/docker-darling.svg?style=svg)](https://circleci.com/gh/utensils/docker-darling) [![Docker Pulls](https://img.shields.io/docker/pulls/utensils/darling.svg)](https://hub.docker.com/r/utensils/darling/) [![Docker Stars](https://img.shields.io/docker/stars/utensils/darling.svg)](https://hub.docker.com/r/utensils/darling/) [![](https://images.microbadger.com/badges/image/utensils/darling.svg)](https://microbadger.com/images/utensils/darling "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/utensils/darling.svg)](https://microbadger.com/images/utensils/darling "Get your own version badge on microbadger.com")  
 
+![Darling Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Darling_project_logo.png/150px-Darling_project_logo.png)
+
 ## About
 
 This is a containerized version of Darling (macOS translation layer). This is an experimental project with the goal to eventually cross compile both iOS and macOS projects in a docker container. I have had some limited success with macOS application builds.
@@ -44,11 +46,21 @@ docker run -i -t \
     --privileged utensils/darling darling shell
 ```
 
-For Ubuntu/Debian Hosts run:  
+For Ubuntu/Debian Linux Hosts run:
 
 ```shell
 docker run -i -t \
     -v /usr/src:/usr/src:ro \
+    --privileged utensils/darling darling shell
+```
+
+For CentOS/RHEL Linux Hosts run:
+
+```shell
+docker run -i -t \
+    -v /lib/modules/"$(uname -r)"/build:/lib/modules/"$(uname -r)"/build:ro \
+    -v /lib/modules/"$(uname -r)"/modules.builtin:/lib/modules/"$(uname -r)"/modules.builtin:ro \
+    -v /lib/modules/"$(uname -r)"/modules.order:/lib/modules/"$(uname -r)"/modules.order:ro \
     --privileged utensils/darling darling shell
 ```
 

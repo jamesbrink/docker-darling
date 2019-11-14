@@ -99,6 +99,7 @@ FROM ${BASE_IMAGE}
 RUN set -xe; \
     groupadd -g 1000 darling; \
     useradd -g darling -u 1000 -s /bin/sh -d /home/darling darling; \
+    chown -R 1000:1000 /home/darling; \
     # Install deps. \
     dpkg --add-architecture i386; \
     apt-get update; \
@@ -109,6 +110,7 @@ RUN set -xe; \
         flex \
         kmod \
         make \
+        libelf-dev \
         sudo; \
     rm -rf /var/lib/apt/lists/*; \
     # Setup sudo access \
