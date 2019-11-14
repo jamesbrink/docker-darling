@@ -109,6 +109,7 @@ RUN set -xe; \
         flex \
         kmod \
         make \
+        libelf-dev \
         sudo; \
     rm -rf /var/lib/apt/lists/*; \
     # Setup sudo access \
